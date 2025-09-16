@@ -4,8 +4,9 @@ const DATABASE_ID = import.meta.env.VITE_APPWRITE_DATABASE_ID;
 const COLLECTION_ID = import.meta.env.VITE_APPWRITE_COLLECTION_ID;
 
 const client = new Client()
-.setEndpoint("https://fra.cloud.appwrite.io/v1")
-.setProject(PROJECT_ID)
+  .setEndpoint("https://fra.cloud.appwrite.io") // no /v1
+  .setProject(PROJECT_ID)
+
 
 const database= new Databases(client);
 
@@ -32,8 +33,9 @@ export const updateSearchCount = async (searchTerm,movie)=>{
             })
         }
     }catch(error){
+  console.error("Appwrite Error:", error);
+}
 
-    }
    
 }
 
@@ -47,6 +49,7 @@ const result =await database.listDocuments(DATABASE_ID,COLLECTION_ID,[
 return result.documents;
 
     }catch(error){
+  console.error("Appwrite Error:", error);
+}
 
-    }
 }
